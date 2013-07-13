@@ -8,7 +8,7 @@ Crafty.scene('Office', function() {
     Crafty.background("url('./assets/beachbg.png')");
     var player = Crafty.e('Player')
         .attr({ x: 580, y: 100, w: 10, h: 100 });
-    Crafty.e("Item").attr({w:20,h:20,x:50,y:200}).color('red').description('a gun!!');
+    Crafty.e("Item").attr({w:20,h:20,x:50,y:200}).color('red').description(items.lamp.desc);
 
 
     var positions = [];
@@ -40,5 +40,9 @@ Crafty.scene('Office', function() {
         clickedItem = null;
     }
 
+});
+
+Crafty.scene('Apartment', function() {
+    Crafty.e('Item')
 });
 Crafty.scene('Inventory', function() {});
