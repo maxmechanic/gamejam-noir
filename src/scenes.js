@@ -8,14 +8,8 @@ Crafty.scene('Office', function() {
     Crafty.background("url('./assets/beachbg.png')");
     var player = Crafty.e('Player')
         .attr({ x: 580, y: 100, w: 10, h: 100 });
+    Crafty.e("Item").attr({w:20,h:20,x:50,y:200}).color('red').description('a gun!!');
 
-    // var box = new Crafty.polygon([0,0], [500,0], [500,500], [0,500]);
-    // var itemBox = new Crafty.polygon([0,0],[0,500],[500,500],[500,0]);
-        // var player = Crafty.e("2D");
-        //     player.onMouseDown = function(e) {
-        //         alert();
-        //     };
-    var box = Crafty.e("2D,DOM,Collision,WiredHitBox,Solid,Mouse").attr({w:500,h:500,x:0,y:0});
 
     var positions = [];
     positions.push(new Crafty.math.Vector2D(50,50));
@@ -28,9 +22,9 @@ Crafty.scene('Office', function() {
     Crafty.e("2D, DOM, Color").attr({w:10,h:10,x:500,y:500}).color('green');
     Crafty.e("2D, DOM, Color").attr({w:10,h:10,x:1000,y:50}).color('green');
 
+    Crafty.addEvent('Player', Crafty.stage.elem, "mousedown", checkClick);
+    var clickedItem;
 
-
-    Crafty.addEvent(player, Crafty.stage.elem, "mousedown", checkClick);
 
     function checkClick(e) {
         var vec = new Crafty.math.Vector2D(e.realX,e.realY);
@@ -41,7 +35,9 @@ Crafty.scene('Office', function() {
             }
         }
 
-        player.moveChar(positions[newPos].x, positions[newPos].y);
+        player.moveChar(positions[newPos].x, positions[newPos].y, clickedItem);
+
+        clickedItem = null;
     }
 
 });
