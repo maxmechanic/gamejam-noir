@@ -15,12 +15,21 @@ Crafty.c('Player', {
     },
 
     moveChar: function(x, y) {
-        this.tween({x:x, y:y}, 150);
+        var distX = x - this._x;
+        var distY = y - this._y;
+
+        if (distX === 0 && distY === 0) {
+            if (this.item)
+                console.log(this.item.desc);
+            this.item = null;
+            return;
+        }
+        this.tween({x:x, y:y}, 125);
         this.bind('TweenEnd', function() {
             if (this.item)
-                alert(this.item.desc);
+                console.log(this.item.desc);
+            this.item = null;
         });
-        this.item = null;
 
     }
 
@@ -40,8 +49,8 @@ Crafty.c('Item', {
             Crafty.trigger('itemClick', this);
         });
     },
-    description: function(desc) {
-        this.desc = desc;
+    itemInfo: function(item) {
+        this.desc = item.desc;
     }
 
 
