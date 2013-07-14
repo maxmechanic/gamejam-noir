@@ -73,6 +73,7 @@ items = {
         },
         gunDrawer: {
             hasGun: true,
+            path: createPath('knob_t.png'),
             desc: "I ask the boss to get me a gun, he buys me this little thing. It's practically a toy, and doesn't have much punch to it. Still, a bullet between the eyes is a bullet between the eyes, and I'm good enough to put one there, thanks to Dad. Time to hit the road.",
             hasSplash: true
         }
