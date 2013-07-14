@@ -39,14 +39,23 @@ items = {
             path: createPath('desk_chair_t.png')
         },
         detectiveDesk: {
+            behavior: function() {
+                Crafty.trigger('findKey');
+            },
             desc: "A beautiful desk, solid oak. He says it's been in his family for generations. I think he picked mine up off the curb.",
             path: createPath('desktop_t.png')
+        },
+        key: {
+            desc: "I don't really see the point of locking the filing cabinet when you keep the key in a place so easily found. I suppose the idea is to discourage very lazy crooks."
         },
         backWindow: {
             desc: "Not a bad view, all told. Pity I get to stare at a blank wall all day.",
             path: createPath('window_t.png')
         },
         filingCab: {
+            behavior: function() {
+                Crafty.trigger('openDrawer');
+            },
             desc: "Every case that the boss has ever worked on. I hate to admit it, but he's pretty good at his job, and almost every file in here had been solved. He guards them pretty closely; you need a key to get at them.",
             path: createPath('filing_cabinet_clsd_t.png')
         },
@@ -74,10 +83,13 @@ items = {
 
         },
         gunDrawer: {
+            behavior: function() {
+                Crafty.trigger('checkInventory', this);
+
+            },
             hasGun: true,
             path: createPath('knob_t.png'),
-            desc: "I ask the boss to get me a gun, he buys me this little thing. It's practically a toy, and doesn't have much punch to it. Still, a bullet between the eyes is a bullet between the eyes, and I'm good enough to put one there, thanks to Dad. Time to hit the road.",
-            hasSplash: true
+            desc: "I ask the boss to get me a gun, he buys me this little thing. It's practically a toy, and doesn't have much punch to it. Still, a bullet between the eyes is a bullet between the eyes, and I'm good enough to put one there, thanks to Dad. Time to hit the road."
         }
 
     }

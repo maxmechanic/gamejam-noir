@@ -41,7 +41,20 @@ Crafty.scene('Office', function() {
         .attr({x:840, y: 300});
 
 
+    Crafty.bind('findKey', function() {
+        alert('found key');
+        player.hasKey = true;
+    });
 
+    Crafty.bind('openDrawer', function() {
+        if (player.hasKey) {
+            Crafty.e('Splash').image(office.caseFile.path).desc(office.caseFile.desc);
+
+        } else {
+            Crafty.e('DialogBox').desc(office.filingCab.desc);
+        }
+
+    });
 
     // Crafty.e("Item, Color, Text, Image").image('./assets/items/chair_t.png').attr({x:740, y: 180}).itemInfo(office.clientChairs);
 
