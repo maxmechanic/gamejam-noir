@@ -10,7 +10,6 @@ Crafty.scene('Office', function() {
     var player = Crafty.e('Player')
         .image('./assets/main_char.png')
         .attr({x:840, y: 300});
-    Crafty.e("Item").attr({w:20,h:20,x:50,y:200}).color('red').itemInfo(office.doorSign);
 
 
     var positions = [];
@@ -20,14 +19,14 @@ Crafty.scene('Office', function() {
     positions.push(new Crafty.math.Vector2D(1000,50));
 
     //defining in room, left to right.
-    //Missing door, plant
-    // Crafty.e("Item").itemInfo(office.door).image('./assets/items/')
-    Crafty.e("Item").attr({x:900, y: 165}).image('./assets/items/right_door_t.png').itemInfo(office.doorSign);
+    Crafty.e("Item").attr({x:900, y: 165}).image(office.doorSign.path).itemInfo(office.doorSign);
 
-    Crafty.e("Item, Color, Text").attr({x:930, y: 410}).image(office.plant.path).itemInfo(office.plant);
-    Crafty.e("Item, Color, Text, Image").image(office.clientChairs.path).attr({x:740, y: 180}).itemInfo(office.clientChairs);
-    Crafty.e("Item, Color, Text").attr({x:640, y: 260}).image(office.dadPhoto.path).itemInfo(office.dadPhoto);
+    Crafty.e("Item").attr({x:930, y: 410}).image(office.plant.path).itemInfo(office.plant);
+    Crafty.e("Item").image(office.clientChairs.path).attr({x:740, y: 180}).itemInfo(office.clientChairs);
+    Crafty.e("Item").attr({x:640, y: 260}).image(office.dadPhoto.path).itemInfo(office.dadPhoto);
     Crafty.e("Item").attr(new Crafty.polygon([607,270],[665,270],[700,467],[705, 525], [625,525], [625,467])).itemInfo(office.clientChairs);
+    Crafty.e("Item").attr({x:635, y: 325}).image(office.typeWriter.path).itemInfo(office.typeWriter);
+    Crafty.e("Item").attr({x:615, y: 470}).image(office.gunDrawer.path).itemInfo(office.gunDrawer);
 
     // Crafty.e("Item, Color, Text, Image").image('./assets/items/chair_t.png').attr({x:740, y: 180}).itemInfo(office.clientChairs);
 
