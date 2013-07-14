@@ -36,7 +36,7 @@ items = {
         },
         detectiveChair: {
             desc: "The boss's throne, from where he holds court and hears the people's problems. It squeaks.",
-            path: createPath('desk_chair_t')
+            path: createPath('desk_chair_t.png')
         },
         detectiveDesk: {
             desc: "A beautiful desk, solid oak. He says it's been in his family for generations. I think he picked mine up off the curb.",
@@ -55,6 +55,8 @@ items = {
             path: createPath('gunoil_t.png')
         },
         phone: {
+            path: createPath('phone_t.png'),
+            desc: "No one calling, no one to call."
         },
         deskDrawer: {
             desc: "I don't really see the point of locking the filing cabinet when you keep the key in a place so easily found. I suppose the idea is to discourage very lazy crooks.",
