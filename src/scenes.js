@@ -44,7 +44,7 @@ Crafty.scene('Office', function() {
 
 
     Crafty.bind('findKey', function() {
-        if (!player.hasKey) {
+        if (!player.hasKey && player.visitedCab) {
             player.hasKey = true;
             Crafty.e('DialogBox').desc('This looks like the key to the filing cabinet.');
         } else {
@@ -68,6 +68,7 @@ Crafty.scene('Office', function() {
             Crafty.e('Splash').image(office.caseFile.path).desc(office.caseFile.desc);
             player.hasFile = true;
         } else {
+            player.visitedCab = true;
             Crafty.e('DialogBox').desc(office.filingCab.desc);
         }
     });

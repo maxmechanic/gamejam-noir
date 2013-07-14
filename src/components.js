@@ -88,9 +88,10 @@ Crafty.c('UseableItem', {
 Crafty.c('DialogBox', {
     init: function() {
         this.requires('Text,DOM,2D,Mouse').attr({x:0, y:624,w:1000, h: 144});
-        this.textFont({ size: '18px', family: 'Courier' });
+        this.textFont({ size: '17px', family: 'Courier' });
         this.css('padding', '20px');
         this.css('padding-right', '50px');
+        this.css('overflow', 'scroll');
 
         // this.css('word-break', 'hyphenate');
         this.css('vertical-align', 'middle');
