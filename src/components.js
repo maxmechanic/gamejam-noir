@@ -3,6 +3,7 @@ Crafty.c('Player', {
     init: function() {
         this.requires('2D, DOM, Mouse, Image, Tween');
         this.bind('itemClick', this.itemSet);
+        this.inventory = {};
 
     },
     itemSet: function(item) {
@@ -68,7 +69,7 @@ Crafty.c('UseableItem', {
 Crafty.c('DialogBox', {
     init: function() {
         this.requires('Text,DOM,2D,Mouse').attr({x:0, y:624,w:1024, h: 144});
-        this.textFont({ size: '20px', weight: 'bold' });
+        this.textFont({ size: '18px', weight: 'bold' });
         this.css('background-color', 'grey');
         this.css('padding', '30px');
         this.css('word-break', 'hyphenate');
