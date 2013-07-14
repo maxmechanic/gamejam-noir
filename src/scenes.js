@@ -25,7 +25,7 @@ Crafty.scene('Office', function() {
     Crafty.e("Item").attr({x:640, y: 260}).image(office.dadPhoto.path).itemInfo(office.dadPhoto);
     Crafty.e("Item").attr(new Crafty.polygon([607,270],[665,270],[700,467],[705, 525], [625,525], [625,467])).itemInfo(office.clientChairs);
     Crafty.e("Item").attr({x:635, y: 325}).image(office.typeWriter.path).itemInfo(office.typeWriter);
-    Crafty.e("Item").attr({x:615, y: 470}).image(office.gunDrawer.path).itemInfo(office.gunDrawer);
+    Crafty.e("Item").attr({x:461, y:0}).image(office.midwall.path).itemInfo(office.midwall);
     Crafty.e("Item").attr({x:480, y: 160}).image(office.divider.path).itemInfo(office.divider);
     Crafty.e("Item").attr({x:375, y: 175}).image(office.filingCab.path).itemInfo(office.filingCab);
     Crafty.e("Item").attr({x:165, y: 420}).image(office.detectiveChair.path).itemInfo(office.detectiveChair);
@@ -33,6 +33,8 @@ Crafty.scene('Office', function() {
     Crafty.e("Item").attr({x:220, y: 500}).image(office.gunOil.path).itemInfo(office.gunOil);
     Crafty.e("Item").attr({x:255, y: 395}).image(office.phone.path).itemInfo(office.phone);
     Crafty.e("Item").attr({x:50, y: 180}).image(office.backWindow.path).itemInfo(office.backWindow);
+    Crafty.e("Item").attr({x:615, y: 470}).image(office.gunDrawer.path).itemInfo('');
+
 
 
 
@@ -42,18 +44,40 @@ Crafty.scene('Office', function() {
 
 
     Crafty.bind('findKey', function() {
-        alert('found key');
-        player.hasKey = true;
+        if (!player.hasKey) {
+            player.hasKey = true;
+            Crafty.e('DialogBox').desc('This looks like the key to the filing cabinet.');
+        } else {
+            Crafty.e('DialogBox').desc(office.plant.desc);
+        }
+    });
+
+
+    Crafty.bind('findGun', function() {
+        if (player.hasGun) {
+            Crafty.e('DialogBox').desc('An empty drawer.');
+
+        } else {
+            player.hasGun = true;
+            Crafty.e('Splash').image(office.gun.path).desc(office.gun.desc);
+        }
     });
 
     Crafty.bind('openDrawer', function() {
         if (player.hasKey) {
             Crafty.e('Splash').image(office.caseFile.path).desc(office.caseFile.desc);
-
+            player.hasFile = true;
         } else {
             Crafty.e('DialogBox').desc(office.filingCab.desc);
         }
+    });
 
+    Crafty.bind('leaveOffice', function() {
+        if (player.hasFile) {
+            alert('game over, man');
+        } else {
+            Crafty.e('DialogBox').desc(office.doorSign.desc);
+        }
     });
 
     // Crafty.e("Item, Color, Text, Image").image('./assets/items/chair_t.png').attr({x:740, y: 180}).itemInfo(office.clientChairs);

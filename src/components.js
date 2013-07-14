@@ -3,6 +3,7 @@ Crafty.c('Player', {
     init: function() {
         this.requires('2D, DOM, Mouse, Image, Tween');
         this.bind('itemClick', this.itemSet);
+        this.hasGun = false;
 
     },
     itemSet: function(item) {
@@ -16,7 +17,7 @@ Crafty.c('Player', {
     engageItem: function() {
         if (this.item) {
             if (this.item.behavior) {
-                this.item.behavior(this.item);
+                this.item.behavior();
             } else {
                 Crafty.e('DialogBox').text(this.item.desc);
             }
@@ -99,15 +100,8 @@ Crafty.c('DialogBox', {
         });
 
     },
-    desc: function(desc) {
-        Crafty.e('DialogBox').text(desc);
+    desc: function(text) {
+        Crafty.e('DialogBox').text(text);
     }
-
-
 });
 
-Crafty.c('DialogChoice', {
-    init: function() {
-
-    }
-}); //Inherits from DialogBox

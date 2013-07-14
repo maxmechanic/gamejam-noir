@@ -9,6 +9,9 @@ items = {
             path: createPath('chair_t.png')
         },
         plant: {
+            behavior: function() {
+                Crafty.trigger('findKey');
+            },
             desc: "Our meager attempt to make the the office seem more homey and inviting. It would probably work better if the damn things would stop dying on us.",
             path: createPath('plant_t.png')
 
@@ -28,7 +31,7 @@ items = {
             path: createPath('typewriter_t.png')
         },
         divider: {
-            desc: "The clear border between the boss and me. He always makes a show of closing the door whenever he has a client in there. Not that it matters much; the wall's as thin as paper, and I can hear pretty much everything. It's the only real entertainment I get.",
+            desc: '',
             path: createPath('central_door_t.png')
         },
         door: {
@@ -39,9 +42,6 @@ items = {
             path: createPath('desk_chair_t.png')
         },
         detectiveDesk: {
-            behavior: function() {
-                Crafty.trigger('findKey');
-            },
             desc: "A beautiful desk, solid oak. He says it's been in his family for generations. I think he picked mine up off the curb.",
             path: createPath('desktop_t.png')
         },
@@ -84,12 +84,18 @@ items = {
         },
         gunDrawer: {
             behavior: function() {
-                Crafty.trigger('checkInventory', this);
-
+                Crafty.trigger('findGun');
             },
-            hasGun: true,
-            path: createPath('knob_t.png'),
-            desc: "I ask the boss to get me a gun, he buys me this little thing. It's practically a toy, and doesn't have much punch to it. Still, a bullet between the eyes is a bullet between the eyes, and I'm good enough to put one there, thanks to Dad. Time to hit the road."
+            desc: '',
+            path: createPath('knob_t.png')
+        },
+        gun: {
+                desc: "I ask the boss to get me a gun, he buys me this little thing. It's practically a toy, and doesn't have much punch to it. Still, a bullet between the eyes is a bullet between the eyes, and I'm good enough to put one there, thanks to Dad. Time to hit the road.",
+                path: createPath('snubnose_foreground.png')
+        },
+        midwall: {
+            desc: "The clear border between the boss and me. He always makes a show of closing the door whenever he has a client in there. Not that it matters much; the wall's as thin as paper, and I can hear pretty much everything. It's the only real entertainment I get.",
+            path: createPath('office_midwall_n.png')
         }
 
     }
