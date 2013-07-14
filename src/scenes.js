@@ -7,9 +7,7 @@ Crafty.scene('Office', function() {
     var office = items.office;
     console.log('office scene launched');
     Crafty.background("url('./assets/bg/office.png')");
-    var player = Crafty.e('Player')
-        .image('./assets/main_char.png')
-        .attr({x:840, y: 300});
+
 
 
     var positions = [];
@@ -22,6 +20,7 @@ Crafty.scene('Office', function() {
     Crafty.e("Item").attr({x:900, y: 165}).image(office.doorSign.path).itemInfo(office.doorSign);
 
     Crafty.e("Item").attr({x:930, y: 410}).image(office.plant.path).itemInfo(office.plant);
+    Crafty.e("Item").attr({x:582, y: 280}).image(office.herDesk.path).itemInfo(office.herDesk);
     Crafty.e("Item").image(office.clientChairs.path).attr({x:740, y: 180}).itemInfo(office.clientChairs);
     Crafty.e("Item").attr({x:640, y: 260}).image(office.dadPhoto.path).itemInfo(office.dadPhoto);
     Crafty.e("Item").attr(new Crafty.polygon([607,270],[665,270],[700,467],[705, 525], [625,525], [625,467])).itemInfo(office.clientChairs);
@@ -37,6 +36,9 @@ Crafty.scene('Office', function() {
 
 
 
+    var player = Crafty.e('Player')
+        .image('./assets/main_char_trans.png')
+        .attr({x:840, y: 300});
 
 
 

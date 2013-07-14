@@ -14,7 +14,7 @@ items = {
 
         },
         herDesk: {
-            desk: "Where I spend most of my day, when I'm not off running errands. I truly live a life of excitement.",
+            desc: "Where I spend most of my day, when I'm not off running errands. I truly live a life of excitement.",
             path: createPath('front_desk_w_chair_t.png')
         },
 
