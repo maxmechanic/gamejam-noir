@@ -27,6 +27,19 @@ Crafty.scene('Office', function() {
     Crafty.e("Item").attr(new Crafty.polygon([607,270],[665,270],[700,467],[705, 525], [625,525], [625,467])).itemInfo(office.clientChairs);
     Crafty.e("Item").attr({x:635, y: 325}).image(office.typeWriter.path).itemInfo(office.typeWriter);
     Crafty.e("Item").attr({x:615, y: 470}).image(office.gunDrawer.path).itemInfo(office.gunDrawer);
+    Crafty.e("Item").attr({x:480, y: 160}).image(office.divider.path).itemInfo(office.divider);
+    Crafty.e("Item").attr({x:375, y: 175}).image(office.filingCab.path).itemInfo(office.filingCab);
+    Crafty.e("Item").attr({x:165, y: 420}).image(office.detectiveChair.path).itemInfo(office.detectiveChair);
+    Crafty.e("Item").attr({x:180, y: 387}).image(office.detectiveDesk.path).itemInfo(office.detectiveDesk);
+    Crafty.e("Item").attr({x:220, y: 500}).image(office.gunOil.path).itemInfo(office.gunOil);
+    Crafty.e("Item").attr({x:255, y: 395}).image(office.phone.path).itemInfo(office.phone);
+    Crafty.e("Item").attr({x:50, y: 180}).image(office.backWindow.path).itemInfo(office.backWindow);
+
+
+
+
+
+
 
     // Crafty.e("Item, Color, Text, Image").image('./assets/items/chair_t.png').attr({x:740, y: 180}).itemInfo(office.clientChairs);
 
