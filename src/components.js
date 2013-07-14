@@ -1,9 +1,7 @@
 
 Crafty.c('Player', {
     init: function() {
-        this.requires('2D, DOM, Mouse, Color, Tween')
-        .color('rgb(20, 75, 40)');
-
+        this.requires('2D, DOM, Mouse, Image, Tween');
         this.bind('itemClick', this.itemSet);
 
     },
@@ -12,42 +10,44 @@ Crafty.c('Player', {
     },
 
     engageItem: function() {
+        if (this.item) {
+            if (this.item.hasSplash) {
+                //display splash image, destroy on any click to the scene
+                alert('splash!');
+            }
+            alert('!!!' + this.item.desc);
+            this.item = null;
+        }
+        this.unbind('TweenEnd', this.engageItem);
     },
 
     moveChar: function(x, y) {
+        this.bind('TweenEnd', this.engageItem);
         var distX = x - this._x;
         var distY = y - this._y;
+        var frames = 50;
 
         if (distX === 0 && distY === 0) {
-            if (this.item)
-                console.log(this.item.desc);
-            this.item = null;
-            return;
+            frames = 5;
         }
-        this.tween({x:x, y:y}, 125);
-        this.bind('TweenEnd', function() {
-            if (this.item)
-                console.log(this.item.desc);
-            this.item = null;
-        });
+        this.tween({x:x, y:y}, frames);
+
 
     }
 
 });
 
-
-Crafty.c('Inventory', {
-    init: function() {
-
-    }
-});
 
 Crafty.c('Item', {
     init: function() {
-        this.requires('2D, DOM, Mouse, Color');
+        this.requires('2D, DOM, Mouse, Color, Image');
         this.bind('Click', function() {
             Crafty.trigger('itemClick', this);
         });
+        this.bind('MouseOver', function() {
+            this.css('cursor', 'pointer');
+        });
+
     },
     itemInfo: function(item) {
         this.desc = item.desc;
@@ -55,6 +55,8 @@ Crafty.c('Item', {
 
 
 }); //Have one component for when on level and in inventory?
+
+Crafty.c('Splash', {});
 
 Crafty.c('UseableItem', {
     init: function() {
@@ -67,6 +69,7 @@ Crafty.c('DialogBox', {
 
     }
 });
+
 Crafty.c('DialogChoice', {
     init: function() {
 
