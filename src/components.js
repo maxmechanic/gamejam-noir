@@ -15,7 +15,7 @@ Crafty.c('Player', {
                 //display splash image, destroy on any click to the scene
                 alert('splash!');
             }
-            alert('!!!' + this.item.desc);
+            Crafty.e('DialogBox').text(this.item.desc);
             this.item = null;
         }
         this.unbind('TweenEnd', this.engageItem);
@@ -31,6 +31,7 @@ Crafty.c('Player', {
             frames = 5;
         }
         this.tween({x:x, y:y}, frames);
+        Crafty.trigger('Next');
 
 
     }
@@ -66,6 +67,16 @@ Crafty.c('UseableItem', {
 
 Crafty.c('DialogBox', {
     init: function() {
+        this.requires('Text,DOM,2D,Mouse').attr({x:0, y:624,w:1024, h: 144});
+        this.textFont({ size: '20px', weight: 'bold' });
+        this.css('background-color', 'grey');
+        this.css('padding', '30px');
+        this.css('word-break', 'hyphenate');
+        this.css('vertical-align', 'middle');
+
+        this.bind('Next', function() {
+            this.destroy();
+        });
 
     }
 });
