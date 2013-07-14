@@ -57,15 +57,31 @@ Crafty.c('Item', {
         this.bind('MouseOver', function() {
             this.css('cursor', 'pointer');
         });
+        this.bind('changePlant', function() {
+            if (this.itemType === 'plant') {
+                this.image(office.plant.newPath);
+            }
+        });
+
+        this.bind('changeCab', function() {
+            if (this.itemType === 'cab') {
+                this.image(office.filingCab.newPath);
+            }
+        });
 
     },
+
     itemInfo: function(item) {
         this.desc = item.desc;
         this.behavior = item.behavior;
+    },
+
+    iType: function(type) {
+        this.itemType = itemType;
     }
 
 
-}); //Have one component for when on level and in inventory?
+});
 
 Crafty.c('Splash', {
     init: function() {

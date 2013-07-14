@@ -13,7 +13,8 @@ items = {
                 Crafty.trigger('findKey');
             },
             desc: "Our meager attempt to make the the office seem more homey and inviting. It would probably work better if the damn things would stop dying on us.",
-            path: createPath('plant_t.png')
+            path: createPath('plant_t.png'),
+            newPath: createPath('emptyplant_t.png')
 
         },
         herDesk: {

@@ -1,20 +1,60 @@
 Crafty.scene('Intro', function () {
+
+    // Crafty.audio.add("bgm", "url(./assets/sound/bgm.wav)");
+    var stem = './assets/cutscenes/cutscene_';
+    var scenes = [stem + '1_0.png',stem+'1_1.png',stem+'1_2.png'];
+    Crafty.addEvent('Intro', Crafty.stage.elem, "mousedown", start);
+    var i = 1;
+    function start() {
+        page.tween({alpha:0}, 400);
+    }
+
+    // var sixth = Crafty.e('2D,DOM,Tween,Image').image(scenes[5]);
+    // var fifth = Crafty.e('2D,DOM,Tween,Image').image(scenes[4]);
+    // var fourth = Crafty.e('2D,DOM,Tween,Image').image(scenes[3]);
+    var third = Crafty.e('2D,DOM,Tween,Image').image(scenes[2]);
+    var sec = Crafty.e('2D,DOM,Tween,Image').image(scenes[1]);
+    var page = Crafty.e('2D,DOM,Tween,Image').image(scenes[0]);
+
+
+
+
+    page.bind("TweenEnd", function () {
+        setTimeout(function() {
+            sec.tween({alpha:0}, 600);
+        });
+    }, 2000);
+
+    sec.bind("TweenEnd", function () {
+        third.tween({alpha:0}, 600);
+    });
+
+    third.bind("TweenEnd", function () {
+        Crafty.scene('Office');
+    });
+
+
 });
-Crafty.scene('Loading', function() {});
+// Crafty.scene('Cutscene', function() {
+//     Crafty.scene('Office');
+// });
 
 //For playable scenes, define barriers of the background for what can be considered the floor.
 Crafty.scene('Office', function() {
+    // Crafty.audio.add("bgm", "url(./assets/sound/bgm.wav)");
+    // Crafty.audio.add("url('./assets/sound/bgm.png')");
+
     var office = items.office;
+
     console.log('office scene launched');
     Crafty.background("url('./assets/bg/office.png')");
 
-
-
     var positions = [];
-    positions.push(new Crafty.math.Vector2D(50,50));
-    positions.push(new Crafty.math.Vector2D(200,200));
-    positions.push(new Crafty.math.Vector2D(500,500));
-    positions.push(new Crafty.math.Vector2D(1000,50));
+    positions.push(new Crafty.math.Vector2D(550,280));
+    positions.push(new Crafty.math.Vector2D(800,465));
+    positions.push(new Crafty.math.Vector2D(800,265));
+    positions.push(new Crafty.math.Vector2D(380,387));
+    positions.push(new Crafty.math.Vector2D(355,210));
 
     //defining in room, left to right.
     Crafty.e("Item").attr({x:900, y: 165}).image(office.doorSign.path).itemInfo(office.doorSign);
@@ -23,7 +63,6 @@ Crafty.scene('Office', function() {
     Crafty.e("Item").attr({x:582, y: 280}).image(office.herDesk.path).itemInfo(office.herDesk);
     Crafty.e("Item").image(office.clientChairs.path).attr({x:740, y: 180}).itemInfo(office.clientChairs);
     Crafty.e("Item").attr({x:640, y: 260}).image(office.dadPhoto.path).itemInfo(office.dadPhoto);
-    Crafty.e("Item").attr(new Crafty.polygon([607,270],[665,270],[700,467],[705, 525], [625,525], [625,467])).itemInfo(office.clientChairs);
     Crafty.e("Item").attr({x:635, y: 325}).image(office.typeWriter.path).itemInfo(office.typeWriter);
     Crafty.e("Item").attr({x:461, y:0}).image(office.midwall.path).itemInfo(office.midwall);
     Crafty.e("Item").attr({x:480, y: 160}).image(office.divider.path).itemInfo(office.divider);
@@ -35,9 +74,6 @@ Crafty.scene('Office', function() {
     Crafty.e("Item").attr({x:50, y: 180}).image(office.backWindow.path).itemInfo(office.backWindow);
     Crafty.e("Item").attr({x:615, y: 470}).image(office.gunDrawer.path).itemInfo('');
 
-
-
-
     var player = Crafty.e('Player')
         .image('./assets/main_char_trans.png')
         .attr({x:840, y: 300});
@@ -47,6 +83,7 @@ Crafty.scene('Office', function() {
         if (!player.hasKey && player.visitedCab) {
             player.hasKey = true;
             Crafty.e('DialogBox').desc('This looks like the key to the filing cabinet.');
+            Crafty.trigger('changePlant');
         } else {
             Crafty.e('DialogBox').desc(office.plant.desc);
         }
@@ -65,6 +102,7 @@ Crafty.scene('Office', function() {
 
     Crafty.bind('openDrawer', function() {
         if (player.hasKey) {
+            Crafty.trigger('changeCab');
             Crafty.e('Splash').image(office.caseFile.path).desc(office.caseFile.desc);
             player.hasFile = true;
         } else {
@@ -85,6 +123,7 @@ Crafty.scene('Office', function() {
 
 
     Crafty.addEvent('Player', Crafty.stage.elem, "mousedown", checkClick);
+        // Crafty.audio.play(bgm, -1);
 
 
     function checkClick(e) {
