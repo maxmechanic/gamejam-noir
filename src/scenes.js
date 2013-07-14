@@ -9,9 +9,7 @@ Crafty.scene('Intro', function () {
         page.tween({alpha:0}, 400);
     }
 
-    // var sixth = Crafty.e('2D,DOM,Tween,Image').image(scenes[5]);
-    // var fifth = Crafty.e('2D,DOM,Tween,Image').image(scenes[4]);
-    // var fourth = Crafty.e('2D,DOM,Tween,Image').image(scenes[3]);
+
     var third = Crafty.e('2D,DOM,Tween,Image').image(scenes[2]);
     var sec = Crafty.e('2D,DOM,Tween,Image').image(scenes[1]);
     var page = Crafty.e('2D,DOM,Tween,Image').image(scenes[0]);
@@ -23,7 +21,7 @@ Crafty.scene('Intro', function () {
         setTimeout(function() {
             sec.tween({alpha:0}, 600);
         });
-    }, 2000);
+    }, 1000);
 
     sec.bind("TweenEnd", function () {
         third.tween({alpha:0}, 600);
@@ -35,9 +33,26 @@ Crafty.scene('Intro', function () {
 
 
 });
-// Crafty.scene('Cutscene', function() {
-//     Crafty.scene('Office');
-// });
+
+Crafty.scene('Cutscene', function() {
+    Crafty.background("url('./assets/bg/office.png')");
+    var stem = './assets/cutscenes/cutscene_';
+    var scenes = [stem + '2_1.png',stem+'2_2.png'];
+
+    var sixth = Crafty.e('2D,DOM,Tween,Image').image(scenes[2]);
+    var fifth = Crafty.e('2D,DOM,Tween,Image').image(scenes[1]);
+    var fourth = Crafty.e('2D,DOM,Tween,Image').image(scenes[0]);
+
+    fourth.tween({alpha:0}, 600);
+    fourth.bind("TweenEnd", function () {
+    });
+
+    fifth.bind("TweenEnd", function () {
+
+    });
+
+
+});
 
 //For playable scenes, define barriers of the background for what can be considered the floor.
 Crafty.scene('Office', function() {
@@ -55,6 +70,7 @@ Crafty.scene('Office', function() {
     positions.push(new Crafty.math.Vector2D(800,265));
     positions.push(new Crafty.math.Vector2D(380,387));
     positions.push(new Crafty.math.Vector2D(355,210));
+    positions.push(new Crafty.math.Vector2D(540,340));
 
     //defining in room, left to right.
     Crafty.e("Item").attr({x:900, y: 165}).image(office.doorSign.path).itemInfo(office.doorSign);
@@ -102,9 +118,10 @@ Crafty.scene('Office', function() {
 
     Crafty.bind('openDrawer', function() {
         if (player.hasKey) {
+            player.hasFile = true;
             Crafty.trigger('changeCab');
             Crafty.e('Splash').image(office.caseFile.path).desc(office.caseFile.desc);
-            player.hasFile = true;
+
         } else {
             player.visitedCab = true;
             Crafty.e('DialogBox').desc(office.filingCab.desc);
@@ -113,7 +130,7 @@ Crafty.scene('Office', function() {
 
     Crafty.bind('leaveOffice', function() {
         if (player.hasFile) {
-            alert('game over, man');
+            Crafty.scene('Cutscene');
         } else {
             Crafty.e('DialogBox').desc(office.doorSign.desc);
         }

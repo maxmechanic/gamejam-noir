@@ -1,6 +1,9 @@
 items = {
     office: {
         doorSign: {
+            behavior: function() {
+                Crafty.trigger('leaveOffice');
+            },
             desc: "Thomas Stone, Private Investigator. Straight and to the point. Of course, anyone this far off the beaten path is either lost or already knows who we are.",
             path: createPath('right_door_t.png')
         },

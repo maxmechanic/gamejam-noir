@@ -4,6 +4,7 @@ Crafty.c('Player', {
         this.requires('2D, DOM, Mouse, Image, Tween');
         this.bind('itemClick', this.itemSet);
         this.hasGun = false;
+        this.hasFile = false;
 
     },
     itemSet: function(item) {
