@@ -6,9 +6,10 @@ Crafty.scene('Loading', function() {});
 Crafty.scene('Office', function() {
     var office = items.office;
     console.log('office scene launched');
-    Crafty.background("url('./assets/beachbg.png')");
+    Crafty.background("url('./assets/bg/office.png')");
     var player = Crafty.e('Player')
-        .attr({ x: 580, y: 100, w: 10, h: 100 });
+        .image('./assets/main_char.png')
+        .attr({x:840, y: 300});
     Crafty.e("Item").attr({w:20,h:20,x:50,y:200}).color('red').itemInfo(office.doorSign);
 
 
@@ -18,10 +19,18 @@ Crafty.scene('Office', function() {
     positions.push(new Crafty.math.Vector2D(500,500));
     positions.push(new Crafty.math.Vector2D(1000,50));
 
-    Crafty.e("2D, DOM, Color").attr({w:10,h:10,x:50,y:50}).color('green');
-    Crafty.e("2D, DOM, Color").attr({w:10,h:10,x:200,y:200}).color('green');
-    Crafty.e("2D, DOM, Color").attr({w:10,h:10,x:500,y:500}).color('green');
-    Crafty.e("2D, DOM, Color").attr({w:10,h:10,x:1000,y:50}).color('green');
+    //defining in room, left to right.
+    //Missing door, plant
+    // Crafty.e("Item").itemInfo(office.door).image('./assets/items/')
+    Crafty.e("Item").attr({x:900, y: 165}).image('./assets/items/right_door_t.png').itemInfo(office.doorSign);
+
+    Crafty.e("Item, Color, Text").attr({x:930, y: 410}).image(office.plant.path).itemInfo(office.plant);
+    Crafty.e("Item, Color, Text, Image").image(office.clientChairs.path).attr({x:740, y: 180}).itemInfo(office.clientChairs);
+    Crafty.e("Item, Color, Text").attr({x:640, y: 260}).image(office.dadPhoto.path).itemInfo(office.dadPhoto);
+    Crafty.e("Item").attr(new Crafty.polygon([607,270],[665,270],[700,467],[705, 525], [625,525], [625,467])).itemInfo(office.clientChairs);
+
+    // Crafty.e("Item, Color, Text, Image").image('./assets/items/chair_t.png').attr({x:740, y: 180}).itemInfo(office.clientChairs);
+
 
     Crafty.addEvent('Player', Crafty.stage.elem, "mousedown", checkClick);
 
@@ -41,7 +50,7 @@ Crafty.scene('Office', function() {
 
 });
 
-Crafty.scene('Apartment', function() {
-    Crafty.e('Item')
-});
-Crafty.scene('Inventory', function() {});
+// Crafty.scene('Apartment', function() {
+//     Crafty.e('Item')
+// });
+// Crafty.scene('Inventory', function() {});
